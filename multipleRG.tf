@@ -1,5 +1,5 @@
 # Create an Resource group
-resource "azurerm_resource_group" "rg1" {
+resource "azurerm_resource_group" "multirg1" {
   name     = "terraform-rg1"
   location = "central india"
   tags = {
@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "rg1" {
     owner       = "peter bhau"
 }
 }
-resource "azurerm_resource_group" "rg2" {
+resource "azurerm_resource_group" "multirg2" {
   name     = "terraform-rg2"
   location = "central india"
   tags = {
@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "rg2" {
 }
 }
 
-resource "azurerm_resource_group" "rg3" {
+resource "azurerm_resource_group" "multirg3" {
   name     = "terraform-rg3"
   location = "central india"
   tags = {
