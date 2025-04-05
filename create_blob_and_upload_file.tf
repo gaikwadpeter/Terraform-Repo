@@ -4,7 +4,7 @@
 
 
 resource "azurerm_storage_blob" "peter_blob" {
-  name                   = "my_awesome_content.jpg"
+  name                   = "my_awesome_content.png"
   storage_account_name   = azurerm_storage_account.storageaccount.name
   storage_container_name = azurerm_storage_container.sa_container.name
   type                   = "Block"
