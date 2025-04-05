@@ -1,3 +1,27 @@
+# ☁️ Azure Resource Group with Terraform
+
+This repository contains a simple Terraform configuration to **create a Resource Group** in Microsoft Azure. It's perfect for beginners learning infrastructure as code (IaC) using Terraform and Azure.
+
+---
+
+## 📌 What Does This Code Do?
+
+The Terraform code provisions a **Resource Group** named `terraform-rg1` in the **Central India** Azure region with specific metadata tags.
+
+
+# Create a Resource Group
+resource "azurerm_resource_group" "rg1" {
+  name     = "terraform-rg1"
+  location = "central india"
+  tags = {
+    environment = "test"
+    cost_center = "paisa wala"
+    owner       = "peter bhau"
+  }
+}
+
+---
+
 It seems that the active file readme.md is currently empty, as there is no code or content in the file. Markdown files like readme.md are typically used to provide documentation or instructions about a project. For example, they might include an introduction to the project, setup instructions, usage examples, or other relevant details.
 
 What is Terraform?
