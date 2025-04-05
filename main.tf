@@ -93,3 +93,4 @@ resource "azurerm_linux_virtual_machine" "ironman_vm" {
         version   = "latest"                        # Use the latest version
     }
 }
+
