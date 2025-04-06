@@ -1,12 +1,12 @@
 # Create a resource group
 resource "azurerm_resource_group" "avengers_group" {
-    name     = "var.rg_name" # Name of the resource group
-    location = "var.location"           # Azure region
+    name     = var.rg_name # Name of the resource group
+    location = var.location          # Azure region
 }
 
 # Create a virtual network
 resource "azurerm_virtual_network" "shield_vnet" {
-    name                = "var.vnet_name"            # Name of the virtual network
+    name                = var.vnet_name            # Name of the virtual network
     address_space       = ["10.0.0.0/16"]          # Address space for the VNet
     location            = azurerm_resource_group.avengers_group.location # Use the same location as the resource group
     resource_group_name = azurerm_resource_group.avengers_group.name     # Associate with the resource group
@@ -14,7 +14,7 @@ resource "azurerm_virtual_network" "shield_vnet" {
 
 # Create a subnet within the virtual network
 resource "azurerm_subnet" "stark_subnet" {
-    name                 = "var.subnet_name"          # Name of the subnet
+    name                 = var.subnet_name          # Name of the subnet
     resource_group_name  = azurerm_resource_group.avengers_group.name     # Associate with the resource group
     virtual_network_name = azurerm_virtual_network.shield_vnet.name       # Associate with the virtual network
     address_prefixes     = ["10.0.1.0/24"]         # Address range for the subnet
@@ -22,7 +22,7 @@ resource "azurerm_subnet" "stark_subnet" {
 
 # Create a public IP address for the VM
 resource "azurerm_public_ip" "thor_pip" {
-    name                = "var.public_ip_name"               # Name of the public IP
+    name                = var.public_ip_name               # Name of the public IP
     location            = azurerm_resource_group.avengers_group.location # Use the same location as the resource group
     resource_group_name = azurerm_resource_group.avengers_group.name     # Associate with the resource group
     allocation_method   = "Dynamic"                # Dynamic allocation of the public IP
@@ -30,12 +30,12 @@ resource "azurerm_public_ip" "thor_pip" {
 
 # Create a network interface for the VM
 resource "azurerm_network_interface" "hulk_nic" {
-    name                = "var.nic_name"               # Name of the network interface
+    name                = var.nic_name               # Name of the network interface
     location            = azurerm_resource_group.avengers_group.location # Use the same location as the resource group
     resource_group_name = azurerm_resource_group.avengers_group.name     # Associate with the resource group
 
     ip_configuration {
-        name                          = "hulk-ip-config"             # Name of the IP configuration
+        name                          = hulk-ip-config             # Name of the IP configuration
         subnet_id                     = azurerm_subnet.stark_subnet.id # Associate with the subnet
         private_ip_address_allocation = "Dynamic"                    # Dynamic private IP allocation
         public_ip_address_id          = azurerm_public_ip.thor_pip.id # Associate with the public IP
@@ -44,7 +44,7 @@ resource "azurerm_network_interface" "hulk_nic" {
 
 # Create a network security group
 resource "azurerm_network_security_group" "avengers_nsg" {
-    name                = "var.nsg_name"           # Name of the NSG
+    name                = var.nsg_name           # Name of the NSG
     location            = azurerm_resource_group.avengers_group.location # Use the same location as the resource group
     resource_group_name = azurerm_resource_group.avengers_group.name     # Associate with the resource group
 
@@ -68,15 +68,15 @@ resource "azurerm_subnet_network_security_group_association" "stark_subnet_nsg" 
 }
 # Create a virtual machine
 resource "azurerm_linux_virtual_machine" "ironman_vm" {
-    name                = "var.vm_name"            # Name of the virtual machine
+    name                = var.vm_name            # Name of the virtual machine
     location            = azurerm_resource_group.avengers_group.location # Use the same location as the resource group
     resource_group_name = azurerm_resource_group.avengers_group.name     # Associate with the resource group
-    size                = "var.vm_size"          # VM size (SKU)
-    admin_username      = "var.admin_username"             # Admin username for the VM
+    size                = var.vm_size          # VM size (SKU)
+    admin_username      = var.admin_username             # Admin username for the VM
     disable_password_authentication = false # Enable password authentication
 
     # Authentication using password
-    admin_password = "var.admin_password"                      # Admin password for the VM
+    admin_password = var.admin_password                      # Admin password for the VM
 
     network_interface_ids = [azurerm_network_interface.hulk_nic.id] # Attach the network interface
 
