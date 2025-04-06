@@ -1,5 +1,5 @@
 rg_name = "Dev-avengers-resources" # Name of the resource group
-location = "centralindia" # Location for the resources
+location = "central india" # Location for the resources
 
 vnet_name = "Dev-shield-vnet" # Name of the virtual network 
 
