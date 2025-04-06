@@ -1,7 +1,7 @@
 # Create a resource group
 resource "azurerm_resource_group" "avengers_group" {
     name     = "var.rg_name" # Name of the resource group
-    location = "centralindia"           # Azure region
+    location = "var.location"           # Azure region
 }
 
 # Create a virtual network
